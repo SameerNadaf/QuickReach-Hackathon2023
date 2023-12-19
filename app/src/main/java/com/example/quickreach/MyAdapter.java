@@ -2,39 +2,59 @@ package com.example.quickreach;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.List;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+import java.util.ArrayList;
 
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
-    List<item> items;
+    ArrayList<User> list;
 
-    public MyAdapter(Context context, List<item> items) {
+    public MyAdapter(Context context, ArrayList<User> list) {
         this.context = context;
-        this.items = items;
+        this.list = list;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_view,parent,false));
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
+        return new MyViewHolder(v);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  MyViewHolder holder, int position) {
-        holder.nameView.setText(items.get(position).getName());
-        holder.emailView.setText(items.get(position).getEmail());
-        holder.imageView.setImageResource(items.get(position).getImage());
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        User user = list.get(position);
+        holder.name.setText(user.getName());
+        holder.description.setText(user.getDescription());
+        holder.number.setText(user.getNumber());
+
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return list.size();
     }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        TextView name,description,number;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.name);
+            description = itemView.findViewById(R.id.description);
+            number = itemView.findViewById(R.id.number);
+        }
+    }
+
 }

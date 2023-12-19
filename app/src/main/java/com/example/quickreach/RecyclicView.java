@@ -1,53 +1,63 @@
 package com.example.quickreach;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.content.Intent;
-import android.content.Intent;
+
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclicView extends AppCompatActivity {
+
+    RecyclerView recyclerview;
+    DatabaseReference database;
+    MyAdapter myAdapter;
+    ArrayList<User> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclic_view);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        recyclerview = findViewById(R.id.userList);
+        database = FirebaseDatabase.getInstance().getReference("Food");
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
-        List<item> items = new ArrayList<item>();
-        items.add(new item("John wick","john.wick@email.com",R.drawable.a));
-        items.add(new item("Robert j","robert.j@email.com",R.drawable.a));
-        items.add(new item("James Gunn","james.gunn@email.com",R.drawable.a));
-        items.add(new item("Ricky tales","rickey.tales@email.com",R.drawable.a));
-        items.add(new item("Micky mose","mickey.mouse@email.com",R.drawable.a));
-        items.add(new item("Pick War","pick.war@email.com",R.drawable.a));
-        items.add(new item("Leg piece","leg.piece@email.com",R.drawable.a));
-        items.add(new item("Apple Mac","apple.mac@email.com",R.drawable.a));
-        items.add(new item("John wick","john.wick@email.com",R.drawable.a));
-        items.add(new item("Robert j","robert.j@email.com",R.drawable.a));
-        items.add(new item("James Gunn","james.gunn@email.com",R.drawable.a));
-        items.add(new item("Ricky tales","rickey.tales@email.com",R.drawable.a));
-        items.add(new item("Micky mose","mickey.mouse@email.com",R.drawable.a));
-        items.add(new item("Pick War","pick.war@email.com",R.drawable.a));
-        items.add(new item("Leg piece","leg.piece@email.com",R.drawable.a));
-        items.add(new item("Apple Mac","apple.mac@email.com",R.drawable.a));
+        list = new ArrayList<>();
+        myAdapter = new MyAdapter(this,list);
+        recyclerview.setAdapter(myAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                    User user = dataSnapshot.getValue(User.class);
+                    list.add(user);
+
+                }
+                myAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MyAdapter(getApplicationContext(),items));
+            }
+        });
 
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

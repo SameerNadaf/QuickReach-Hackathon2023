@@ -5,311 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/black">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:src="@drawable/back"
-        android:id="@+id/background"
-        />
-
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text"
-        android:orientation="vertical"
-        android:layout_below="@+id/background">
+        android:gravity="center"
+        android:id="@+id/bgm">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose a category below:"
-            android:fontFamily="times"
-            android:textSize="28sp"
-            android:id="@+id/cat"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@drawable/fbg"/>
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bgm"
+        app:cardCornerRadius="15dp"
+        android:elevation="20dp"
+        android:id="@+id/food">
 
-
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:src="@drawable/food"/>
 
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text"
-        android:id="@+id/food"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical">
+        android:gravity="end"
+        android:id="@+id/crafts"
+        android:layout_below="@+id/food">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="FOOD"
-            android:fontFamily="times"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:layout_marginStart="15dp"/>
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:src="@drawable/craft"/>
 
     </LinearLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/food"
-        android:id="@+id/fooditems"
-        android:columnCount="3"
-        android:rowCount="1"
-        android:foregroundGravity="center"
-        android:layout_marginBottom="30dp"
-        >
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="15dp"
-            >
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Chutney"
-                android:id="@+id/chutney"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            >
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Pickles"
-                android:id="@+id/pickles"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="2"
-            android:layout_columnWeight="1">
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Roti"
-                android:id="@+id/roti"/>
-
-        </LinearLayout>
-
-    </GridLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fooditems"
-        android:layout_marginTop="20dp"
-        android:id="@+id/crafs"
-        android:orientation="vertical">
+        android:id="@+id/servieces"
+        android:layout_below="@+id/crafts">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="times"
-            android:text="CRAFTS"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:src="@drawable/services"/>
 
     </LinearLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crafs"
-        android:id="@+id/crafitems"
-        android:columnCount="3"
-        android:rowCount="1"
-        android:foregroundGravity="center"
-        android:layout_marginBottom="30dp"
-        >
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="15dp"
-            >
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Pots"
-                android:id="@+id/pots"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            >
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Hangers"
-                android:id="@+id/hangers"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="2"
-            android:layout_columnWeight="1">
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Weaving"
-                android:id="@+id/weaving"
-                />
-
-        </LinearLayout>
-
-    </GridLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/crafitems"
-        android:layout_marginTop="20dp"
-        android:id="@+id/service"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SERVICES"
-            android:fontFamily="times"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:layout_marginStart="15dp"/>
-
-    </LinearLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/service"
-        android:id="@+id/services"
-        android:columnCount="3"
-        android:rowCount="1"
-        android:foregroundGravity="center"
-        >
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="15dp"
-            >
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Plumber"
-                android:id="@+id/plumber"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="10dp">
-
-            <Button
-                android:layout_width="117dp"
-                android:layout_height="wrap_content"
-                android:text="Electrician"
-                android:id="@+id/electrician"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="2"
-            android:layout_columnWeight="1">
-
-            <Button
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="Painter"
-                android:id="@+id/painter"
-                />
-
-        </LinearLayout>
-
-    </GridLayout>
 
 </RelativeLayout>
