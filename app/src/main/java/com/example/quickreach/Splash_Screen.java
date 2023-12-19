@@ -18,7 +18,7 @@ public class Splash_Screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(Splash_Screen.this, MainActivity.class);
+                Intent mainIntent = new Intent(Splash_Screen.this, RecyclicView.class);
                 startActivity(mainIntent);
                 finish();
 
