@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-
+import android.content.Intent;
+import android.content.Intent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,4 +42,12 @@ public class RecyclicView extends AppCompatActivity {
         recyclerView.setAdapter(new MyAdapter(getApplicationContext(),items));
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
