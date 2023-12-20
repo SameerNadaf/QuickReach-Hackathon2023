@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class RecyclicView extends AppCompatActivity {
 
-    RecyclerView recyclerview;
+    RecyclerView recyclerView;
     DatabaseReference database;
     MyAdapter myAdapter;
     ArrayList<User> list;
@@ -29,35 +30,44 @@ public class RecyclicView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclic_view);
 
-        recyclerview = findViewById(R.id.userList);
-        database = FirebaseDatabase.getInstance().getReference("Food");
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.userList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this,list);
-        recyclerview.setAdapter(myAdapter);
+        myAdapter = new MyAdapter(this, list);
+        recyclerView.setAdapter(myAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+        String databaseName = getIntent().getStringExtra("databaseName");
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+        if (databaseName != null && !databaseName.isEmpty()) {
+            database = FirebaseDatabase.getInstance().getReference(databaseName);
 
-                    User user = dataSnapshot.getValue(User.class);
-                    list.add(user);
+            database.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    list.clear();
 
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        User user = dataSnapshot.getValue(User.class);
+                        list.add(user);
+                    }
+
+                    myAdapter.notifyDataSetChanged();
                 }
-                myAdapter.notifyDataSetChanged();
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-            }
-        });
-
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(RecyclicView.this, "Error fetching data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(this, "Database is null or empty", Toast.LENGTH_SHORT).show();
+        }
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

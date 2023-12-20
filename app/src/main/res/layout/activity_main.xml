@@ -4,62 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/bgm">
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/ico">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:src="@drawable/fbg"/>
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/about"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/about"
+            />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/logout"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/signout"
+            />
 
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bgm"
-        app:cardCornerRadius="15dp"
-        android:elevation="20dp"
-        android:id="@+id/food">
+        android:id="@+id/cd"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_below="@+id/ico"
+        >
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="200dp"
-            android:src="@drawable/food"/>
+            android:layout_width="371dp"
+            android:layout_height="70dp"
+            android:src="@drawable/fback" />
 
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:id="@+id/ab"
+        android:layout_below="@+id/cd">
+
+        <ImageView
+            android:layout_width="330dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/chef"
+            android:src="@drawable/food" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:id="@+id/crafts"
-        android:layout_below="@+id/food">
+        android:id="@+id/ef"
+        android:layout_below="@+id/ab">
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="200dp"
-            android:src="@drawable/craft"/>
+            android:layout_width="317dp"
+            android:layout_height="170dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/maker"
+            android:src="@drawable/craf" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/servieces"
-        android:layout_below="@+id/crafts">
+        android:gravity="start"
+        android:id="@+id/gh"
+        android:layout_below="@+id/ef">
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="200dp"
-            android:src="@drawable/services"/>
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/worker"
+            android:src="@drawable/servi" />
 
     </LinearLayout>
+
 
 </RelativeLayout>
